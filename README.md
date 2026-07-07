@@ -1,0 +1,1 @@
+Project ini membuat database analytics menggunakan PostgreSQL dan Python dengan Medallion Architecture (Bronze, Silver, Gold)
