@@ -1,0 +1,99 @@
+[2026-07-06 13:10:07] ======================================================
+[2026-07-06 13:10:08]   NYC TAXI DATABASE PIPELINE DIMULAI
+[2026-07-06 13:10:08] ======================================================
+[2026-07-06 13:10:08] STEP 1: Menjalankan Docker Compose...
+[2026-07-06 13:10:10] Menunggu PostgreSQL siap...
+[2026-07-06 13:10:16] STEP 1: SUCCESS
+[2026-07-06 13:10:16] STEP 2: Menjalankan pipeline Python (main.py)...
+============================================================
+  NYC TAXI DATABASE PIPELINE - CAPSTONE PROJECT 2
+============================================================
+
+--- STEP 1: CREATE SCHEMA ---
+
+[SchemaManager] Menjalankan: C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\db\init\01_schema.sql
+[SchemaManager] Selesai.
+
+--- STEP 2: LOAD BRONZE ---
+[BronzeLoader] raw_taxi_zones loaded: 265 rows
+[BronzeLoader] raw_taxi_trips loaded: 3724889 rows
+
+--- STEP 3: TRANSFORM BRONZE -> SILVER ---
+
+[SilverTransformer] Menjalankan: C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\db\init\03_silver_transform.sql
+[SilverTransformer] Selesai.
+[SilverTransformer] silver.taxi_trips_cleaned: 3518153 rows
+
+--- STEP 4: BUILD GOLD MART ---
+
+[GoldMartBuilder] Menjalankan: C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\db\init\04_gold_mart.sql
+[GoldMartBuilder] Selesai.
+
+[GoldMartBuilder] Menjalankan: C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\db\init\05_views.sql
+[GoldMartBuilder] Selesai.
+
+--- STEP 5: RUN BUSINESS QUESTIONS ---
+
+>>> Q1_total_trips
+Hasil: 1 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q1_total_trips.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q1_total_trips.md
+
+>>> Q2_revenue_summary
+Hasil: 1 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q2_revenue_summary.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q2_revenue_summary.md
+
+>>> Q5_payment_type
+Hasil: 5 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q5_payment_type.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q5_payment_type.md
+
+>>> Q6_top_borough
+Hasil: 8 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q6_top_borough.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q6_top_borough.md
+
+>>> Q6_top_zones
+Hasil: 10 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q6_top_zones.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q6_top_zones.md
+
+>>> Q7_top_revenue_zone
+Hasil: 10 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q7_top_revenue_zone.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q7_top_revenue_zone.md
+
+>>> Q8_top_routes
+Hasil: 10 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q8_top_routes.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q8_top_routes.md
+
+>>> Q10_data_quality_issues
+Hasil: 5 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q10_data_quality_issues.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q10_data_quality_issues.md
+
+>>> Q13_top10_zone_revenue
+Hasil: 10 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q13_top10_zone_revenue.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q13_top10_zone_revenue.md
+
+>>> Q18_zone_revenue_ranking
+Hasil: 20 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q18_zone_revenue_ranking.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q18_zone_revenue_ranking.md
+
+>>> Q19_zone_rank_per_borough
+Hasil: 30 baris
+CSV : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q19_zone_rank_per_borough.csv
+MD  : C:\Users\Suryoprakoso\Purwadhika\capstone_project_2\scripts\..\docs\query_results\Q19_zone_rank_per_borough.md
+
+============================================================
+  PIPELINE SELESAI!
+  Hasil query tersimpan di: docs/query_results/
+============================================================
+[2026-07-06 13:15:37] STEP 2: SUCCESS
+[2026-07-06 13:15:37] ======================================================
+[2026-07-06 13:15:37]   PIPELINE SELESAI! Log tersimpan di: logs/pipeline_20260706_131007.log
+[2026-07-06 13:15:37] ======================================================
